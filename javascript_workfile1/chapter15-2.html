@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.first{color:red;}
+		.second{color: orange;}
+		.third{color: yellow;}
+	</style>
+	<script src="jquery-1.12.2.js"></script>
+	<script>
+		$(document).ready(function(){
+			var color = $('h1').css('color');
+			alert(color);
+		});
+	</script>
+	
+	<!-- setter(1) -->
+	<script>
+		$(document).ready(function(){
+			$('h1').css('color','red');
+		});
+	</script>
+
+	<!-- setter(2) -->
+	<script>
+		$(document).ready(function(){
+			var color = ['red','green','purple'];
+			$('h1').css('color',function(index){
+				return color[index];
+			});
+		});
+	</script>
+
+	<!-- setter(3) -->
+	<script>
+		$(document).ready(function(){
+			var color = ['green','navy','blue'];
+			$('h1').css({
+				color: function(index){
+					return color[index];
+				},backgroundColor: 'gray'
+			});
+		});
+	</script>
+	
+	<script>
+	function myFunction() {
+	    var str = "212.345.654";
+	    var res = str.split("\\.");
+	    alert(res);
+	    document.getElementById("demo").innerHTML = res;
+	}
+	</script>
+
+	<!-- html() 메서드 Getter -->
+	<script>
+		$(document).ready(function(){
+			var html = $('h1').html();
+			alert(html);
+		});
+	</script>
+
+	<!-- text() 메서드 Getter -->
+	<script>
+		$(document).ready(function(){
+			var text = $('h1').text();
+			alert(text);
+		})
+	</script>
+	<!-- html() 메서드 Setter -->
+	<script>
+		$(document).ready(function(){
+			$('div').html('<h1>$().html() Method</h1>');
+		});
+	</script>
+	<!-- text() 메서드 Setter text 메서드는 HTML태그 인식하지 않음.-->
+	<script>
+		$(document).ready(function(){
+			$('div').text('<h1>$().html() Method</h1>');
+		});
+	</script>
+	<!-- 함수를 매개변수로 넣을 때 index를 매개변수로 넣음. -->
+	<script>
+		$(document).ready(function(){
+			$('div').html(function(index){
+				return '<h1>Header-'+index+'</h1>';
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$('h3').html(function(index, html){
+				return html;
+				// '★' + html + '★';
+			});
+		});
+	</script>
+	<!-- remove() 메서드 첫번째 문서 객체 제거 -->
+	<script>
+		$(document).ready(function(){
+			$('h4').first().remove();
+		});
+	</script>
+	<!-- empty() 메서드는 안에 있는 속성 모두 없애버림 -->
+	<script>
+		$(document).ready(function(){
+			$('div').empty();
+		});
+	</script>
+
+</head>
+<body>
+	<h1 class="first">Header-0</h1>
+	<h1 class="second">Header-1</h1>
+	<h1 class="third">Header-2</h1>
+	<p id="demo"></p>
+
+	<h2>Header-0</h2>
+	<h2>Header-1</h2>
+	<h2>Header-2</h2>
+	<div></div>
+	<div></div>
+	<div></div>
+	<h3>h3-Header-0</h3>
+	<h3>h3-Header-1</h3>
+	<h3>h3-Header-2</h3>
+	<h4>h4-Header-0</h4>
+	<h4>h4-Header-1</h4>
+</body>
+</html>

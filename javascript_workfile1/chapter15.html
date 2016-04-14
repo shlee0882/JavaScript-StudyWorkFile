@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.12.2.js"></script>
+	<script>
+		// 클래스 속성 추가
+		$(document).ready(function(){
+			$('h1').addClass('item');
+		});
+
+		// 유연한 클래스 추가
+		$(document).ready(function(){
+			$('h1').addClass(function (index){
+				return 'class' + index; // class0~2
+			});
+		});
+
+		// 클래스 속성 제거
+		$(document).ready(function(){
+			$('h1').removeClass('select');
+		});
+
+		// attr() 메서드 getter
+		$(document).ready(function(){
+			var src = $('img').attr('src');
+			alert(src);
+		});
+
+		// setter(1) $(selector).attr(name,value);
+		$(document).ready(function(){
+			$('img').attr('width',200);
+		});
+
+		// setter(2) $(selector).attr(name,function(index,attr){})
+		$(document).ready(function(){
+			$('img').attr('width', function(index){
+				return (index + 1) * 100;
+			});
+		});
+
+		// setter(3) $(selector).attr(object);
+		$(document).ready(function(){
+			$('img').attr({
+				width: function(index){
+					return (index+1)*100;
+				},
+				height: 100
+			});
+		});
+
+		// 문서 객체의 속성 제거 removeAttr(name)
+		$(document).ready(function(){
+			$('h1').removeAttr('data-index');
+		});
+
+
+	</script>
+</head>
+<body>
+
+	<h1>Header-0</h1>
+	<h1>Header-1</h1>
+	<h1>Header-2</h1>
+
+	<h1 class="item">Header-0</h1>
+	<h1 class="item select">Header-1</h1>
+	<h1 class="item">Header-2</h1>
+	
+	<img src="Chrysanthemum.jpg" alt="" />
+	<img src="Desert.jpg" alt="" />
+	<img src="Hydrangeas.jpg" alt="" />
+
+	<h1 data-index="0">Header-0</h1>
+	<h1 data-index="1">Header-1</h1>
+	<h1 data-index="2">Header-2</h1>
+</body>
+</html>

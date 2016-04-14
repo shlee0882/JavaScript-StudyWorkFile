@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 5px; padding: 5px; 
+			border:3px solid black;
+		 }
+	</style>
+	<script src="jquery-1.12.2.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('a').click(function(event){
+				$(this).css('background-color','blue');
+				event.preventDefault();
+			});
+	
+		$('h1').click(function(){
+				$(this).css('background-color','red');
+			});
+
+		// 이벤트 전달 막는 메서드 stopPropagation();
+		$('a').click(function(event){
+			$(this).css('background-color','blue');
+			event.stopPropagation();
+			event.preventDefault();
+		});
+		});
+
+		// delegate 방식 on() 메서드
+		$(document).ready(function(){
+			$('h2').on('click',function(){
+				var length = $('h2').length;
+				var targetHTML = $(this).html();
+				$('#wrap').append('<h2>' + length + ' - ' + targetHTML+'</h2>');
+			});
+		});
+
+		// delegate 방식 on() 메서드
+		$(document).ready(function(){
+			$('#wrap2').on('click','h3',function(){
+				var length = $('h3').length;
+				var targetHTML = $(this).html();
+				$('#wrap2').append('<h3>'+length+'-'+targetHTML+'</h3>');
+
+				// delegate 방식 on() 메서드 이벤트 리스너 삭제
+				//$('#wrap2').off('click','h3');
+			});
+		});
+	</script>			
+</head>
+<body>
+	<h1>
+		<a href="http://www.naver.com">네이버</a>
+	</h1>
+	<div id="wrap">
+		<h2>Header2</h2>
+	</div>
+	<div id="wrap2">
+		<h3>Header3</h3>
+	</div>`
+</body>
+</html>

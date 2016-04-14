@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.div-01, .h1-01, .p-01{border:3px solid black;}
+	</style>
+	<script>
+		window.onload = function(){
+			// 변수를 선언합니다.
+			var header = document.getElementById('header');
+			// 이벤트를 연결합니다.
+			header.onclick = function(){
+				alert('클릭');
+				// 이벤트를 제거합니다. 한번만 이벤트 발생하고 그다음부터 발생 안함.
+				header.onclick = null;
+			};
+		};
+
+		// 이벤트 발생객체와 이벤트 객체
+		window.onload = function(){
+			document.getElementById('header').onclick = function(){
+				alert(this);
+			};
+		};
+
+		window.onload = function(){
+			document.getElementById('header').onclick = function(){
+				this.style.color = 'orange';
+				this.style.backgroundColor = 'lime';
+			};
+		};
+
+		window.onload = function(){
+			document.getElementById('header').onclick = function(e){
+				// 이벤트 객체 생성
+				var event = e || window.event; // 브라우저별 매개변수 받는 방식 달라서 이렇게 처리해줌.
+				document.body.innerHTML = '';
+				for(var key in event){
+					document.body.innerHTML += '<p>' + key + ':' + event[key] + '</p>';
+				}
+			};
+		};
+
+		// 이벤트 강제 실행
+		window.onload = function(){
+			// 문서 객체 가져옴
+			var buttonA = document.getElementById('button-a');
+			var buttonB = document.getElementById('button-b');
+			var counterA = document.getElementById('counter-a');
+			var counterB = document.getElementById('counter-b');
+			// 이벤트 연결
+			buttonA.onclick = function(){
+				counterA.innerHTML = Number(counterA.innerHTML)+1;
+			};
+			buttonB.onclick = function(){
+				counterB.innerHTML = Number(counterB.innerHTML)+1;
+				buttonA.onclick();
+			};
+		};
+		function whenClick(e){
+			alert('클릭');
+		}
+		window.onload = function(){
+			// 이벤트 연결
+			document.getElementById('my-form').onsubmit = function(){
+				var pass = document.getElementById('pass').value;
+				var passCheck = document.getElementById('pass-check').value;
+
+				// 비밀번호 같은지 확인
+				if(pass == passCheck){
+					alert('성공');
+				}else{
+					alert('다시 입력해주세요.')
+					return false;
+				}
+			};
+		};
+		function whenSubmit(){
+			// 유효성 검사
+			return false;
+		}
+		window.onload = function(){
+			document.getElementById('header2').onclick = function(){
+				alert('header2');
+			};
+			document.getElementById('paragraph').onclick = function(){
+				alert('paragraph');
+			};
+			// 이벤트 전달 막음. 익스만 event.cancelBubble 속성 사용, 나머지 stopPropagation 속성 사용
+			document.getElementById('paragraph').onclick = function(e){
+				// 이벤트 객체 처리
+				var event = e || window.event;
+
+				alert('paragraph');
+
+				event.cancelBubble = true;
+				if(event.stopPropagation){
+					event.stopPropagation();
+				}
+			};
+		};
+		// DOM Level 2 익스에서만 됨, 익스 모델 attachEvent, detachEvent(eventProperty, eventListener);,
+		// window.attachEvent('onload', function(){
+		// 	var header = document.getElementById('my-header2');
+		// 	header.attachEvent('onclick', function(){alert('클릭'); });
+		// 	header.attachEvent('onclick', function(){alert('클릭'); });
+		// 	header.attachEvent('onclick', function(){alert('클릭'); });	
+		// });
+
+		// 표준 이벤트모델 - 이벤트 연결
+		window.onload = function(){
+			var header = document.getElementById('my-header3');
+
+			header.addEventListener('click',function(){
+				this.innerHTML += '+';
+			});
+		};
+
+		// 이벤트 모델의 통합적 사용
+		window.onload = function(){
+			var header = document.getElementById('my-header4');
+
+			if(header.attachEvent){
+				// 인터넷 익스플로러의 경우 실행합니다.
+				var handler = function(){
+					window.event.srcElement.style.color = 'red';
+					window.event.srcElement.detachEvent('onclick',handler);
+				};
+				header.attachEvent('onclick',handler);
+			} else{
+				// 그 외 브라우저에서 실행합니다.
+				var handler = function(){
+					this.style.color = 'red';
+					this.innerHTML += '+';
+					this.removeEventListener('click',handler);
+				};
+				header.addEventListener('click',handler);
+			}
+		};
+	</script>
+</head>
+<body>
+	<h1 id="header">Click</h1>
+	<button id="button-a">ButtonA</button>
+	<button id="button-b">ButtonB</button>
+	<h1>Button A - <span id="counter-a">0</span></h1>
+	<h1>Button B - <span id="counter-b">0</span></h1>
+	<h1 onclick="alert('클릭'); var alpha=10; alert(alpha);">인라인 이벤트 모델</h1>
+	<h1 onclick="whenClick(event)">함수호출 이벤트 모델</h1>
+	
+	<form id="my-form">
+		<label for="name">이름</label><br/>
+		<input type="text" name="name" id="name"/><br/>
+		<label for="pass">비밀번호</label><br/>
+		<input type="password" name="pass" id="pass"/><br/>
+		<label for="pass-check">비밀번호 확인</label><br/>
+		<input type="password" id="pass-check"/><br/>
+		<input type="submit" value="제출"/>
+	</form>
+	<!-- 인라인 이벤트 모델 디폴트 이벤트 제거시 return 명시해줘야한다. -->
+	<form onsubmit="return whenSubmit">
+		<label for="name">이름</label><br/>
+		<input type="text" name="name" id="name"/><br/>
+		<label for="pass">비밀번호</label><br/>
+		<input type="password" name="pass" id="pass"/><br/>
+		<label for="pass-check">비밀번호 확인</label><br/>
+		<input type="password" id="pass-check"/><br/>
+		<input type="submit" value="제출"/>
+	</form>
+	<!-- 이벤트 버블링 자식에서 부모로 올라가기 -->
+	<div class="div-01" onclick="alert('outer-div')">
+		<div class="div-01" onclick="alert('innder-div')">
+			<h1 class="h1-01" onclick="alert('header')">
+				<p class="p-01" onclick="alert('paragraph')">Paragraph</p>
+			</h1>
+		</div>
+	</div>
+
+	<h1 id="header2"><p id="paragraph">Paragraph</p></h1>
+	<h1 id="my-header2">IE</h1>
+	<h1 id="my-header3">Click</h1>
+	<h1 id="my-header4">이벤트 모델 통합사용</h1>
+
+</body>
+</html>

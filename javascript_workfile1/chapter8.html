@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// var object = {};
+		// Obejct.defineProperty(object, 'name', {
+		// 	value: '이상현',
+		// 	writable: false,
+		// 	enumerable: false
+		// });
+
+		// object.name = 'OTHER';
+		
+		// for(var i in object){
+		// 	alert(i+':'+object[i]);
+		// }
+		// alert(object.name);
+
+		// var object = {};
+		// var value = 'test';
+		// Object.defineProperty(object,'name',{
+		// 	get: function(){
+		// 		alert('GETTER');
+		// 		return value;
+		// 	},
+		// 	set: function(){
+		// 		alert('SETTER: '+newValue);
+		// 		value = newValue;
+		// 	}
+		// });
+		// object.name = 'ALPHA';
+		// alert(object.name);
+
+		// var object = {};
+		// Object.defineProperty(object, 'hidden', {
+		// 	value:{
+		// 		width: null
+		// 	}
+		// });
+
+		// Object.defineProperty(object, 'width', {
+		// 	get: function(){return this.hidden.width;},
+		// 	set: function(newValue){
+		// 		if(newValue<0){
+		// 			//오류 발생: 프로그램 강제 종료
+		// 			alert('길이는 음수일 수 없습니다.');
+		// 		}else{
+		// 			this.hidden.width = newValue;
+		// 		}
+		// 	}
+		// });
+
+		// object.width = 10;
+		// object.width = -10;
+
+		var object = Object.create({},{
+			name: {value:'이상현',enumerable:true},
+			region: {value: '경기도', enumerable: true}
+		});
+		alert(Object.keys(object));
+
+		var object = Object.create({},{
+			name: {value:'이상현',enumerable: true},
+			region: {value:'서울특별시', enumerable: true}
+		});
+
+		var person = Object.create(object,{
+			gender: {value:'남자',enumerable: true},
+			hobby: {value:'기타',enumerable: true},
+		})
+
+		alert(Object.getOwnPropertyNames(person)); // gender,hobby
+		alert(Object.keys(person)); // gender,hobby
+		alert(person.name+':'+person.region);
+
+		// preventExtensions() 메서드
+		// var object={};
+
+		// object.region = '서울특별시';
+		// Object.defineProperty(object,'name',{
+		// 	value: '이상현',
+		// 	writable: false
+		// });
+
+		// alert(Object.isExtensible(object));
+		// Object.preventExtensions(object);
+		// alert(Object.isExtensible(object));
+
+		// object.dream = '개발자';
+
+		// Object.defineProperty(object, 'showMeTheMoney',{
+		// 	value: true
+		// });
+
+		// 객체 속성 삭제 제한 메서드 Object.seal();
+		var person = {
+			name: '이상현',
+			region: '서울특별시',
+			hobby: '기타'
+		};
+
+		Object.seal(person);
+		delete person.name;
+
+		alert(person.name);
+
+		// 객체 보조 메서드 Object.getOwnPropertyNames() 모든 객체 자신 소유의 속성을 배열로 만듬.
+		var object = {name: '이상현'};
+
+		Object.defineProperty(object, 'region',{
+			value: '서울특별시'
+		});
+
+		alert(Object.keys(object)); // name
+		alert(Object.getOwnPropertyNames(object)); // name,region
+
+		// getOwnPropertyDescriptor() 메서드 특정 속성의 옵션 객체를 추출하는 메서드
+
+		var object = {name:'이상현'};
+		Object.defineProperty(object, 'region', {value:'서울특별시'});
+
+		var descriptors = [];
+		descriptors.push(Object.getOwnPropertyDescriptor(object,'name'));
+		descriptors.push(Object.getOwnPropertyDescriptor(object, 'region'));
+
+		var output = '';
+		for(var i in descriptors){
+			var item = descriptors[i];
+			for(var key in item){
+				output += key +':'+item[key]+'\n';
+			}
+			output += '----------------\n';
+		}
+		alert(output);
+
+		// 음악 재생
+		var audio = new Audio('Kalimba.mp3');
+	</script>
+</head>
+<body>
+	<button onClick="audio.play()">PLAY</button>
+	<button onClick="audio.pause()">PAUSE</button>
+	<input type="number" onchange="audio.currentTime=this.value"/>
+	<input type="number" onchange="audio.volume=this.value"/>
+</body>
+</html>

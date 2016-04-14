@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 100px; height: 100px;
+			background-color: orange;
+			position: relative;
+		}
+	</style>
+	<script src="jquery-1.12.2.js"></script>
+	<script>
+		// delay() 큐에 있는 명령을 잠시 중지 합니다.
+		$(document).ready(function(){
+			$('div').each(function(index){ // 들어있는 모든걸 반복 실행
+				// (index*500) 초 후 animate() 메서드를 실행합니다.
+				$(this).delay(index * 500).animate({
+					left: 500
+				}, 'slow'); // 효과를 진행할 속도 지정 slow. nomal, fast
+			});
+		});
+	</script>
+</head>
+<body>
+	<div></div><div></div>
+	<div></div><div></div>
+	<div></div><div></div>
+</body>
+</html>

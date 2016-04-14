@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// array 객체 4가지 방법 생성
+		var array1 = [52, 273, 103, 32, 43];
+		var array2 = new Array();
+		var array3 = new Array(10);
+		var array4 = new Array(52, 273, 103, 57, 32);
+
+		var array = ['A','B','C','D'];
+		var output ='';
+		for(var i =0; i<array.length; i++){
+			output += i+':'+array[i]+'\n';
+		}
+		alert(output);
+		var array = [52,273,103,32];
+		array.sort(); // 문자열 오름차순 정렬 
+		alert(array);
+
+		var array = [52,273,103,32];
+		array.sort(function(left,right){
+			return left - right; // 오름 차순 정렬
+		});
+		alert(array);
+		array.sort(function(left,right){
+			return right - left; // 내림 차순 정렬
+		});
+		alert(array);
+
+		function Student(name, korean,math, english, science){
+			this.이름 = name;
+			this.국어 = korean;
+			this.수학 = math;
+			this.영어 = english;
+			this.과학 = science;
+
+			this.getSum = function(){
+				return this.국어 + this.수학 + this.영어 + this.과학;
+			}
+			this.getAverage = function(){
+				return this.getSum()/4;
+			}
+			this.toString = function(){
+				return this.이름 + '\t' + this.getSum() + '\t' + this.getAverage();				
+			};
+		}
+		var students = [];
+		students.push(new Student('이상현',90,90,80,80));
+		students.push(new Student('이조은',100,100,90,90));
+		students.push(new Student('김명현',100,100,100,90));
+		students.push(new Student('이규봉',100,100,100,95));
+		
+		students = students.sort(function(left,right){
+			return right.getSum()-left.getSum();
+		}).slice(0,3); // 메서드 체이닝 사용
+		// 3등까지만 남겨둠.
+		// students = students.slice(0,3); 
+
+		var output = '이름\t총점\t평균\n';
+		for(var i in students){
+			output += students[i].toString()+'\n';
+		}
+		alert(output);
+
+		// Array 객체의 메서드 특정 요소 제거하는 메서드 따로 없음. splice 메서드 사용하면 특정요소 제거기능 만들기 가능
+
+		Array.prototype.remove = function(index){
+			this.splice(index,1);
+		}
+
+		var array = [52, 273, 103, 32, 274, 129];
+
+		// 잘못된 방법
+		for(var i=0; i<array.length; i++){
+			if(array[i]>100){
+				array.remove(i);
+			}
+		}
+		alert(array);
+		// 올바른 방법은 역 for 반복문 사용
+		Array.prototype.remove = function(index){this.splice(index,1);}
+		var array = [52,273,103,32,274,129];
+		for(var i = array.length -1; i>=0; i--){
+			if(array[i]>100){
+				array.remove(i);
+			}
+		}
+		alert(array);
+
+		var date = new Date();
+		alert(date);
+		var date = new Date('December 9');
+		var date = new Date('December 9, 1991');
+		var date = new Date('December 9, 1991 02:24:23');
+		var date = new Date(1991, 11, 9, 2, 24, 23, 1);
+		alert(date);
+
+		var date = new Date();
+		date.setDate(date.getDate()+7); // 7일 후 시간 구하기
+		alert(date);
+
+		// Date 객체의 toOOString()메서드
+		var date = new Date(1991,11,9);
+		var output = '';
+		output += 'toDateString:' + date.toDateString()+'\n';
+		output += 'toGMTString:'+date.toGMTString()+'\n';
+		output += 'toLocaleDateString:'+date.toLocaleDateString()+'\n';
+		output += 'toLocaleString:'+date.toLocaleString()+'\n';
+		output += 'toLocaleTimeString:'+date.toLocaleTimeString()+'\n';
+		output += 'toString:'+date.toString()+'\n';
+		output += 'toTimeString'+date.toTimeString()+'\n';
+		output += 'toUTCString:'+date.toUTCString()+'\n';
+		alert(output);
+
+		// 시간 간격 계산 1991.12.9 일 지금까지 시간구함.
+		// var now = new Date();
+		// var before = new Date('December 9, 1991');
+
+		// var interval = now.getTime()-before.getTime();
+		// interval = Math.floor(interval / (1000*60*60*24));
+
+		// alert('Interval:'+interval+'일');
+
+		Date.prototype.getInterval = function(otherDate){
+			var interval;
+			if(this>otherDate){
+				interval = this.getTime() - otherDate.getTime();
+			}else{
+				interval = otherDate.getTime() - this.getTime();
+			}
+			return Math.floor(interval / (1000*60*60*24));
+		};
+
+		var now = new Date();
+		var before = new Date('December 9, 1991');
+
+		alert('Interval:'+now.getInterval(before)+'일');
+
+		// Math 객체
+		var max = Math.max;
+		alert(max(52,920,103,57,32));
+
+		// 배열인지 검사
+		alert(Array.isArray([1,2,3])); // true
+		alert(Array.isArray({})); // false
+		alert(Array.isArray(1)); // false
+
+		// Array 객체의 탐색 메서드
+		var array = [1,2,3,4,5,5,4,3,2,1];
+		var output1 = array.indexOf(4);
+		var output2 = array.indexOf(8);
+		var output3 = array.lastIndexOf(4);
+		var output4 = array.lastIndexOf(8);
+
+		var output = '';
+		output += output1 + ':' + output2 + '\n';
+		output += output3 + ':' + output4;
+		alert(output);
+
+		// .stringify 자바스크립트 객체를 JSON문자열로 변환합니다.
+		var object = {
+			name : '이상현',
+			region : '김포시' 
+		};
+		alert(JSON.stringify(object));
+
+		// .parse JSON 문자열을 자바스크립트 객체로 변환합니다.
+		var object = {
+			name : '이상현',
+			region : '김포시'
+		};
+		var copy = JSON.parse(JSON.stringify(object));
+		alert(copy.name+':'+copy.region);
+
+		// trim 메서드 문자열 양쪽 끝의 공백 제거
+		var text = ' text '; // 공백 넣음
+		var output = '';
+		output += '++' + text + '++\n';
+		output += '++' + text.trim() + '++';
+		alert(output);	
+
+		var object = {};
+		Obejct.defineProperty(object, 'name', {
+			value: '이상현',
+			writable: false,
+			enumerable: false
+		});
+
+		object.name = 'OTHER';
+		
+		for(var i in object){
+			alert(i+':'+object[i]);
+		}
+		alert(object.name);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

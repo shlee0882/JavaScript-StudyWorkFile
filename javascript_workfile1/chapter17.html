@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.12.2.js"></script>
+	<script>
+
+		$(document).ready(function(){
+			// 이벤트 연결
+			$('.button-01').click(function(){
+				// 간단한 효과 적용 toggle() 메서드는 show()와 hide()를 번갈아 실행함.
+				$('.page-01').toggle('slow');
+			});
+			$('.button-02').click(function(){
+				// 간단한 효과 적용 toggle() 메서드는 show()와 hide()를 번갈아 실행함.
+				$('.page-02').toggle('slow');
+			});
+			$('.button-03').click(function(){
+				// 간단한 효과 적용 toggle() 메서드는 show()와 hide()를 번갈아 실행함.
+				$('.page-03').toggle('slow');
+			});
+		});
+	</script>
+</head>
+<body>
+	<button class="button-01">Toggle Show</button>
+	<button class="button-02">Slide Toggle</button>
+	<button class="button-03">fade Toggle</button>
+
+	<div class="page-01">
+		<h1>Lorem ipsum dolor sit amet</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+	</div>
+	<div class="page-02">
+		<h1>Lorem ipsum dolor sit amet</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+	</div>
+	<div class="page-03">
+		<h1>Lorem ipsum dolor sit amet</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+	</div>
+</body>
+</html>

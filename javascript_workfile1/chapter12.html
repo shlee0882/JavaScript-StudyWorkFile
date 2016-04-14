@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// 예외처리란 예외가 발생하지 않게 사전에 해결하는 것을 기본예외 처리라 한다.
+		function registerEventListener(node, event, listener){
+			if(node.addEventListener){
+				// 파이어폭스, 크롬, 사파리, 오페라
+				node.addEventListener(event, listener, false);
+			}else if(node.attachEvent){
+				// 인터넷 익스플로러
+				node.attachEvent('on'+event, listener);
+			}
+		}
+
+		function whenClick(e){
+			var event = window.event || e;
+			var willAlert = '';
+			willAlert += 'clientX: '+event.clientX + '\n';
+			willAlert += 'clientY: '+event.clientY + '\n';
+			alert(willAlert);
+		}
+
+		try{
+			willExcept.byeBye();
+			alert('try 구문 종료');
+		}catch(exception){
+			alert('예외가 발생했습니다.');
+		}finally{
+			alert('예외 발생 가능부분을 통과했습니다.');
+		}
+
+		function registerEventListener(node, event, listener){
+			try{
+				// 파이어폭스, 크롬, 사파리, 오페라
+				node.addEventListener(event, listener, false);
+			}catch(exception){
+				// 인터넷 익스플로러
+				node.attachEvent('on'+event, listener);
+			}
+		}
+		window.onload = function(){
+			var header = document.getElementById('header');
+			registerEventListener(header, 'click', function(){
+				alert('Click');
+			});
+		};
+
+		try{
+			var array = new Array(99999999999);
+		}catch(exception){
+			var output ='';
+			for(var i in exception){
+				output += i + ':' + exception[i] + '\n';
+			}
+			alert(output);
+		}
+
+		// 예외처리로 다 해결되는 것은 아니다.
+		// try{
+		// 	error+-error+++;
+		// }catch(exception){
+		// 	alert('Exception');
+		// }
+
+		// 예외 강제 발생 throw 키워드
+		try{
+			throw 'DivideByZeroException';
+		}catch(exception){
+			if(exception == 'DivideByZeroException'){
+				alert('ㅇㅁㅇ');
+			}
+		}
+
+		// 적절한 강제적 예외 발생 처리 0으로 나누기
+		function divide(alpha, beta){
+			if(beta == 0){
+				throw 'DivideByZeroException';
+			}else{
+				return alpha / beta;
+			}
+		}
+
+		// 출력합니다.
+		try{
+			divide(10,0);
+		}catch(exception){
+			alert('CATCH');
+		}
+
+	</script>
+</head>
+<body>
+	<h1 id="header">Click</h1>
+</body>
+</html>

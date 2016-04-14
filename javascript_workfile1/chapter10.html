@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM Basic</title>
+	<script>
+		window.onload = function(){
+			var h1 = document.createElement('h1');
+			var textNode = document.createTextNode('Hello DOM');
+
+			// 노드를 연결합니다.
+			h1.appendChild(textNode);
+			document.body.appendChild(h1);
+		};
+		window.onload = function(){
+			var img = document.createElement('img');
+			img.src = "Penguins.jpg"; 
+			img.width="500";
+			img.height="350";
+			document.body.appendChild(img);
+		}
+
+		// innerHTML 속성 사용하기
+
+		window.onload = function(){
+			var output = '';
+			output += '<ul>';
+			output += '<li>JavaScript</li>';
+			output += '<li>jQuery</li>';
+			output += '<li>Ajax</li>';
+			output += '</ul>';
+
+			// innerHTML 속성에 문자열을 할당합니다.
+			document.body.innerHTML = output;
+			document.body.innerHTML += '<h1>Document Object Model</h1>';
+		};
+
+		// getElementById() 메서드 사용하기 id를 가져와서 속성을 바꿔버림
+		window.onload = function(){
+			// 문서 객체를 가져옵니다.
+			var header1 = document.getElementById('header-1');
+			var header2 = document.getElementById('header-2');	
+			// 문서 객체의 속성을 변경합니다.
+			header1.innerHTML = 'width getElementById()';
+			header2.innerHTML = 'width getElementById()';
+		}
+
+		// getElementById() 메서드는 한번에 한가지 문서 객체만 가져올수 있다. 하지만 document 객체가 가지는 메서드 사용하면 여러개 가져올수 있다.
+
+		window.onload = function(){
+			var headers = document.getElementsByTagName('h1');
+			// headers[0].innerHTML = 'with getElementsByTagName()';
+			// headers[1].innerHTML = 'with getElementsByTagName()';
+			for(var i = 0; i<headers.length; i++){
+				// 문서 객체의 속성 변경
+				headers[i].innerHTML = 'with getElementsByTagName()';
+			}
+		};
+
+		// 선택자
+
+		window.onload = function(){
+			var header1 = document.querySelector('#header-1');
+			var header2 = document.querySelector('#header-2');
+
+			header1.innerHTML = 'with getElementById()';
+			header2.innerHTML = 'with getElementById()';
+		};
+
+		// 스타일 주기
+		window.onload = function(){
+			var header = document.getElementById('header');
+			header.style.border = '2px solid black';
+			header.style.color = 'orange';
+			header.style.fontFamily = 'helvetica';
+			header.style.backgroundColor = 'lime';
+		};
+
+		// 문서 객체 제거
+		window.onload = function(){
+			var willRemove = document.getElementById('will-remove');
+			document.body.removeChild(willRemove); // body 문서 객체 바로 아래에 제거하고자 하는 문서 객체가 있을때 사용
+			willRemove.parentNode.removeChild(willRemove); // 일반적으로 문서 객체 제거할때 부모노드 이동 부모노드에서 자식노드 삭제한다.
+		};
+
+		window.onload = function(){
+			var clock = document.getElementById('clock');
+
+			setInterval(function(){
+				clock.innerHTML = new Date().toString();
+			}, 1000);
+		};
+
+		window.onload = function(){
+			var sun = document.getElementById('sun');
+			var earth = document.getElementById('earth');
+			var moon = document.getElementById('moon');
+
+			sun.style.position = 'absolute';
+			earth.style.position = 'absolute';
+			moon.style.position = 'absolute';
+			sun.style.left = 250+'px';
+			sun.style.top = 200+'px';
+
+			sun.style.color = 'red';
+			earth.style.color = 'blue';
+			moon.style.color = 'gray';
+
+			var earthAngle = 0;
+			var moonAngle = 0;
+
+			// 애니메이션 시작
+			setInterval(function(){
+				// 각도로 지구 달 좌표 구함
+				var earthLeft = 250+150*Math.cos(earthAngle); // 400
+				var earthTop = 200+150*Math.sin(earthAngle); // 200
+				var moonLeft = earthLeft + 50*Math.cos(moonAngle); // 450
+				var moonTop = earthTop + 50*Math.sin(moonAngle); // 200
+
+				// 위치를 이동합니다.
+				earth.style.left = earthLeft + 'px'; // 400px
+				earth.style.top = earthTop + 'px'; // 200px
+				moon.style.left = moonLeft + 'px'; // 450px 
+				moon.style.top = moonTop + 'px'; // 200px
+
+				// 각도 변경
+				earthAngle += 0.1;
+				moonAngle += 0.3;
+
+			}, 1000/30);
+		};
+
+	</script>
+</head>
+<body>
+	<h1 id="header">Header</h1>	
+	<h1 id="header">Header</h1>
+	<h1 id="will-remove">remove please</h1>
+	<h1 id="clock"></h1>
+	<h1 id="sun">태양</h1>
+	<h1 id="earth">지구</h1>
+	<h1 id="moon">달</h1>
+</body>
+</html>

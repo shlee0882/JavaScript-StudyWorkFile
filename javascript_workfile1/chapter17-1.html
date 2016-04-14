@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0px; padding: 0px;}
+		ul{list-style: none;}
+		img{width: 500px; height: 350px;}
+	</style>
+	<script src="jquery-1.12.2.js"></script>
+	<script src="jquery.innerfade.js"></script>
+	<script>
+		// innderfade 플러그인 https://medienfreunde.de/lab/innerfade/
+		$(document).ready(function(){
+			// innerfade 플러그인을 적용합니다.
+			$('#inner-fade').innerfade({
+				animationtype: 'fade',
+				speed: 750,
+				timeout: 2000,
+				type: 'random',
+				containerheight: '350px'
+			});
+		});
+	</script>
+</head>
+<body>
+	<ul id="inner-fade">
+		<li><img src="Chrysanthemum.jpg" alt=""></li>
+		<li><img src="Desert.jpg" alt=""></li>
+		<li><img src="Hydrangeas.jpg" alt=""></li>
+		<li><img src="Jellyfish.jpg" alt=""></li>
+		<li><img src="Koala.jpg" alt=""></li>
+		<li><img src="Lighthouse.jpg" alt=""></li>
+		<li><img src="Penguins.jpg" alt=""></li>
+	</ul>
+	
+</body>
+</html>

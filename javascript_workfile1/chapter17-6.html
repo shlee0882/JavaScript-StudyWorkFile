@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="jquery-ui-1.11.4.custom/jquery-ui.css">
+	<style>
+		.reverse{
+			color: white;
+			background-color: black;
+		}
+		.div-01{
+			background-color: orange;
+			width: 150px; height: 150px;
+			position: relative;
+		}
+	</style>
+	<script src="jquery-1.12.2.js"></script>
+	<script src="jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+	<script>
+		// jQuery UI 플러그인 공식 사이트 http://jqueryui.com/
+		// jQuery UI Effect 플러그인에는 다음과 같은 기능 있다. 1. 색상변환 애니메이션, 2. addClass(), removeClass(), 3. 추가적인 easing 사용
+		// 색상 변환 애니메이션 사용
+		$(document).ready(function(){
+			$('div').hover(function(){
+				$(this).addClass('reverse',1000);
+			}, function(){
+				$(this).removeClass('reverse',1000);
+			});
+		});
+
+		$(document).ready(function(){
+			$('button').click(function(){
+				var easing = $('select > option:selected').html();
+
+				// easing 속성을 사용한 animate() 메서드
+				$('.div-01').animate({
+					left: '400'
+				}, 2000, easing).animate({
+					left: '0'
+				}, 1000, easing);
+			});
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<h1>Lorem ipsum</h1>
+		<p>Lorem ipsum dolor sit amet</p>
+	</div>
+	<div>
+		<h1>Lorem ipsum</h1>
+		<p>Lorem ipsum dolor sit amet</p>
+	</div>
+	<div>
+		<h1>Lorem ipsum</h1>
+		<p>Lorem ipsum dolor sit amet</p>
+	</div>
+
+	<select>
+		<option>linear</option>
+		<option>swing</option>
+		<option>easeInQuad</option>
+		<!-- 생략 -->
+		<option>easeInBounce</option>
+		<option>easeOutBounce</option>
+		<option>easeInOutBounce</option>
+	</select>
+	<button>MOVE</button>
+	<div class="div-01"></div>
+</body>
+</html>

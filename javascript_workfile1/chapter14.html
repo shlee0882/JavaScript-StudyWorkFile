@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.12.2.js"></script>
+	<script>
+		// 필터 선택자
+		$(document).ready(function(){
+			$('h3:even').css({
+				backgroundColor: 'black',
+				color: 'white'
+			});
+		});
+		// filter() 메서드
+		$(document).ready(function(){
+			$('h3').filter(':even').css({
+				backgroundColor: 'black',
+				color: 'white'
+			});
+		});
+		// filter() 메서드의 매개변수로 함수를 넣을 경우
+		$(document).ready(function(){
+			$('h3').filter(function (index){
+				return index % 3 == 0;
+			}).css({
+				backgroundColor: 'green',
+				color: 'blue'
+			});
+		});
+
+		$(document).ready(function(){
+			$('h1').css('background','orange').filter(':even').css('color','red');
+		});
+
+		$(document).ready(function(){
+			$('h1').css('background','orange');
+			$('h1:even').css('color','white');
+			$('h1:odd').css('color','red');
+		});
+
+		// end() 메서드를 이용한 체이닝
+		$('h1').css('background','orange').filter(':even').css('color','white').end().filter(':odd').css('color','red');
+
+		// eq() 특정 위치 존재하는 문서 객체 선택, first() 첫번째 위치하는 문서 객체 선택, last() 마지막 위치 문서객체 선택
+		$(document).ready(function(){
+			$('h2').eq(0).css('background','purple');
+			$('h2').eq(-1).css('background','gray');
+		});
+
+
+		//add 메서드
+		$(document).ready(function(){
+			$('h4').css('background','gray').add('h5').css('float','left');
+		});
+
+		// is() 문서 객체의 특징을 판별합니다.
+
+		$(document).ready(function(){
+			$('h1').each(function(){
+				if($(this).is('.select')){
+					$(this).css('background','pink');
+				}
+			});
+		});
+
+		// 특정 태그 선택 find()
+		// XML 문서를 문자열로 직접 만듬.
+		var xml = '';
+		xml += '<friends>';
+		xml += '	<friend>';
+		xml += '		<name>이상현</name>';
+		xml += '		<language>Ruby</language>';
+		xml += '	</friend>';
+		xml += '	<friend>';
+		xml += '		<name>이규봉</name>';
+		xml += '		<language>Basic</language>';
+		xml += '	</friend>';
+		xml += '	<friend>';
+		xml += '		<name>김명현</name>';
+		xml += '		<language>C#</language>';
+		xml += '	</friend>';
+		xml += '</friends>';
+
+		$(document).ready(function(){
+			var xmlDoc = $.parseXML(xml);
+			$(xmlDoc).find('friend').each(function(index){
+				var output = '';
+				output += '<div>';
+				output += '	<h1>'+$(this).find('name').text()+'</h1>';
+				output += '	<p>'+$(this).find('language').text()+'</p>';
+				output += '</div>';
+
+				document.body.innerHTML += output;
+			});
+		});
+
+	</script>
+</head>
+<body>
+
+	<h3>Header-0</h3>
+	<h3>Header-1</h3>
+	<h3>Header-2</h3>
+	<h3>Header-3</h3>
+	<h3>Header-4</h3>
+
+	<h1>Header-0</h1>
+	<h1>Header-1</h1>
+	<h1>Header-2</h1>
+
+	<h2>Header-0</h2>
+	<h2>Header-1</h2>
+	<h2>Header-2</h2>
+
+	<h4>Header-0</h4>
+	<h5>Header-1</h5>
+	<h4>Header-2</h4>
+	<h5>Header-3</h5>
+	<h4>Header-4</h4>
+
+	<h1 class="select">Header-0</h1>
+	<h1>Header-1</h1>
+	<h1 class="select">Header-2</h1>
+</body>
+</html>

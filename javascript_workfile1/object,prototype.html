@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		Object.prototype.test = function(){
+			alert(this);
+		}
+		// Object 객체는 자바스크립트 객체의 최상위 객체
+		// Number 객체의 test()메소드를 호출합니다.
+		var number = 275;
+		var character = '문자';
+		number.test();
+		character.test();
+
+		var numberFromLiteral = 350;
+		var numberFromConstructor = new Number(350);
+
+		alert(typeof (numberFromLiteral));
+		alert(typeof (numberFromConstructor));
+
+		// toFixed() 메서드는 고정소수점 표시로 몇번째 끊을지 정함. 
+		var number = 273.842563234;
+		var output = '';
+		output += number.toFixed(1) + '\n';
+		output += number.toFixed(4);
+		alert(output);
+
+		// 생성자 함수의 속성
+		function Constructor(){}
+		Constructor.property = 271;
+		Constructor.method = function(){};
+
+		alert(Constructor.property);
+
+		// MAX_VALUE는 자바스크립트가 나타낼수 있는 최대수
+		var number = Number.MAX_VALUE + 1;
+		alert(number);
+
+		// String 객체는 자바스크립트 내장객체
+		var stringFromLiteral = 'Hello World..!';
+		var stringFromConstructor = new String('Hello World..!');
+
+		// 변수의 자료형을 출력합니다.
+		var output = '';
+		output += typeof(stringFromLiteral)+'\n'; // string
+		output += typeof(stringFromConstructor); // object
+		alert(output);
+
+		// String 객체의 length
+		var characters = prompt('사용할 비밀번호를 입력해주세요.','6글자 이상');
+
+		if(characters.length < 6){
+			alert('6글자 이상으로 입력하세요.');
+		}else{
+			alert('잘했어요');
+		}
+
+		// string 객체 대문자 변환 메서드 잘못된 것과 잘된 것
+		// 잘못된 것.
+		var string = 'abcdefg'
+		string.toUpperCase();
+		alert(string);
+		// 잘된 것.
+		var string = 'abcdefg'
+		string = string.toUpperCase();
+		alert(string);
+
+		// string 객체의 HTML 관련 메서드
+		var string = 'JavaScript';
+		var output = '';
+		output += 'anchor:'+string.anchor()+'<br/>';
+		output += 'big:'+string.big()+'<br/>';
+		output += 'blink:'+string.blink()+'<br/>';
+		output += 'bold:'+string.bold()+'<br/>';
+		output += 'fixed'+string.fixed()+'<br/>';
+		output += 'string:'+string.fontcolor('red')+'<br/>';
+		output += 'fontsize:'+string.fontsize(15)+'<br/>';
+		output += 'italics:'+string.italics()+'<br/>';
+		output += 'link:'+string.link('http://hanb.co.kr')+'<br/>';
+		output += 'small:'+string.small()+'<br/>';
+		output += 'strike:'+string.strike()+'<br/>';
+		output += 'sub:'+string.sub()+'<br/>';
+		output += 'sup:'+string.sup()+'<br/>';
+
+		document.write(output);
+		alert(output);
+
+		// 기존의 메서드 사용 방법...  
+		var output = 'Hello World ..!';
+
+		output = output.toLowerCase();
+		output = output.substring(0,10);
+		output = output.anchor('name');
+
+		alert(output);
+		
+		// 메서드 체이닝 이용
+		var output = 'Hello World ..!';
+		output = output.toLowerCase().substring(0,10).anchor('name');
+		alert(output);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

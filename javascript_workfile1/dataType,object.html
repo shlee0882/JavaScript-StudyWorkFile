@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var primitiveNumber = 273;
+		var objectNumber = new Number(273);
+
+		// 출력합니다.
+		var output = '';
+		output += typeof(primitiveNumber)+':'+primitiveNumber+'\n';
+		output += typeof(objectNumber)+':'+objectNumber;
+		alert(output);
+
+		primitiveNumber.method = function(){
+			return 'Primitive Method'
+		};
+		objectNumber.method = function(){
+			return 'objectNumber'
+		};
+		Number.prototype.method = function(){
+			return 'Method on Prototype';
+		};
+
+		// 메서드를 실행합니다.
+		var output = primitiveNumber.method()+'\n';
+		var output2 = objectNumber.method()+'\n';
+		alert(output); // 객체가 아니므로 오류발생 
+		// 기본자료형은 속성과 메서드 추가해 사용할수 없음. 하지만 프로토 타입 메소드 추가하면 사용가능
+		alert(output2);
+		// 객체이므로 속성 메서드 추가 가능.
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.12.2.js"></script>
+	<script>
+
+		// 문서 객체 생성
+		$(document).ready(function(){
+			$('<h1></h1>');
+		});
+
+		// 문서 객체 생성 및 텍스트 노드 추가
+		$(document).ready(function(){
+			$('<h1></h1>').html('Hello World .. !');
+		});
+
+		// 문서 객체 연결
+		$(document).ready(function(){
+			$('<h1></h1>').html('Hello World .. !').appendTo('body');
+		});
+
+		// 간단한 문서 객체 생성
+		$(document).ready(function(){
+			$('<h1>Hello World .. !</h1>').appendTo('body');
+		});
+
+		// 문서 객체 생성과 속성 지정
+		$(document).ready(function(){
+			$('<img />').attr('src','Chrysanthemum.jpg').appendTo('body');
+		});
+
+		// attr() 메서드 없이 간단하게 생성 가능
+		$(document).ready(function(){
+			$('<img />',{
+				src: 'Chrysanthemum.jpg',
+				width: 350,
+				height: 250
+			}).appendTo('body');
+		});
+
+		// 문서 객체 삽입 메서드 1
+		// $(A).appendTo(B), $(A).prependTo(B), $(A).insertAfter(B), $(A).insertBefore(B)
+
+		// 문서 객체 삽입 메서드 2
+		// $(A).append(B), $(A).prepend(B), $(A).after(B), $(A).before(B)
+
+		$(document).ready(function(){
+			var h1 = '<h1>Header1</h1>';
+			var h2 = '<h2>Header2</h2>';
+
+			$('body').append(h1,h2,h1,h2);
+		});
+
+		$(document).ready(function(){
+			var content = [
+			{ name: '이상현', region: '서울특별시 강서구'},
+			{ name: '김명현', region: '부산광역시 동래구'},
+			{ name: '이규봉', region: '서울특별시 강남구'}
+			];
+			// 문서 객체 추가
+			$('div').append(function(index){
+				var item = content[index];
+				var output = '';
+				output += '<h1>' + item.name + '</h1>';
+				output += '<h2>' + item.region + '</h2>';
+
+				return output;
+			});
+		});
+
+		// 문서 객체 이동 이미지 태그 중 첫번째 문서 객체를 body 태그의 뒷부분으로 이동 시킴
+		$(document).ready(function(){
+			$('img').first().appendTo('body');
+		});
+
+		// 문서 객체의 순서 변경하는 예제 만들기 가능
+
+		$(document).ready(function(){
+			$('img').css('width',250);
+
+			setInterval(function(){
+				$('img').first().appendTo('body');
+			},2000);
+		});
+
+		// 문서 객체 복제
+		// $(document).ready(function(){
+		// 	$('hr').append($('h4'));
+		// });
+	</script>	
+</head>
+<body>
+	<h4>HEADER</h4>
+	<hr/><hr/>
+	<div></div>
+	<div></div>
+	<div></div>
+	<img src="Chrysanthemum.jpg" alt="">
+	<img src="Desert.jpg" alt="">
+	<img src="Hydrangeas.jpg" alt="">
+	<img src="Jellyfish.jpg" alt="">
+	<img src="Koala.jpg" alt="">
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.div-01, .div-02{
+			width: 50px; height: 50px;
+			background-color: orange;
+			position: relative;
+		}
+		.div-03{
+			width: 100px; height: 100px;
+			background-color: orange;
+			position: relative;
+		}
+	</style>
+	<script src="jquery-1.12.2.js"></script>
+	<script>
+		// 애니메이션 큐
+		$(document).ready(function(){
+			$('.div-01').click(function(){
+				$(this).animate({
+					left: '+=60'
+				}, 2000).animate({
+					width: '+=60'
+				}, 2000).animate({
+					height: '+=60'
+				}, 2000);
+			});
+		});
+
+		// clearQueue() 메서드
+
+		$(document).ready(function(){
+			$('.div-02').animate({left:'+=60'},2000);
+			$('.div-02').animate({width:'+=60'},2000);
+			$('.div-02').animate({height:'+=60'},2000);
+
+			// 3초 후에 함수를 실행합니다.
+			setTimeout(function(){
+				// 애니메이션 큐 제거
+				$('.div-02').clearQueue();
+				// 효과 메서드를 사용
+				$('.div-02').hide();
+			}, 3000);
+		});
+
+		// stop() 메서드
+
+		$(document).ready(function(){
+			// 이벤트 연결함.
+			$('button').click(function(){
+				var html =  $(this).html();
+				var evalText = "$('.div-03')."+html;
+
+				// 메서드를 실행합니다.
+				eval(evalText);
+			});
+
+			// 애니메이션을 시작합니다.
+			setInterval(function(){
+				$('.div-03').animate({
+					left: '500'
+				},1000).animate({
+					left: '0'
+				},1000);
+			},2000);
+		});
+
+	</script>
+</head>
+<body>
+<!-- 	<div class="div-01"></div>
+	<div class="div-02"></div> -->
+	<button>stop()</button>
+	<button>stop(true)</button>
+	<button>stop(false, true)</button>
+	<button>stop(true, true)</button>
+	<div class="div-03"></div>
+</body>
+</html>

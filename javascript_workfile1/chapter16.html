@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.12.2.js"></script>
+	<style>
+		.reverse{
+			background: black;
+			color: white;
+		}
+		*{margin: 0; padding: 0;}
+		div{
+			margin: 5px; padding: 3px;
+			border: 3px solid black;
+			border-radius: 10px;
+		}
+	</style>
+	<script>
+		// on() 메서드
+		// $(document).ready(function(event){
+		// 	$('h1').on('click',function(){
+		// 		$(this).html(function(inde,html){
+		// 			return html + '+';
+		// 		});
+		// 	});
+		// });
+
+		$(document).ready(function(){
+			// 이벤트 연결
+			$('h1').on('click',function(){
+				$(this).html(function(index,html){
+					return html + '+';
+				});
+			});
+
+			// 이벤트를 연결하는 on 메소드
+			$('h1').on({
+				mouseenter: function(){ $(this).addClass('reverse'); },
+				mouseleave: function(){ $(this).removeClass('reverse');}
+			});
+		});
+
+		// $(selector).method(function(event){
+
+		// });
+
+		// hover 메서드
+		$(document).ready(function(){
+			$('h1').hover(function(){
+				$(this).addClass('reverse');
+			}, function(){
+				$(this).removeClass('reverse');
+			});
+		});
+
+		// 이벤트 연결 제거 off() 메서드
+
+		$(document).ready(function(){
+			// 연결
+			$('h2').click(function(){
+				// 출력
+				$(this).html('CLICK');
+				alert('이벤트 발생했습니다.');
+				// 제거
+				$(this).off();
+			})
+		});
+
+		// 매개변수 context
+		$(document).ready(function(){
+			$('div').click(function(){
+				var header = $('h3', this).text();
+				var paragraph = $('p', this).text();
+
+				// find() 메서드 사용해도 됨.
+				// var header = $(this).find('h1').text();
+				// var paragraph = $(this).find('p').text();
+
+				alert(header + '\n' + paragraph);
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Header-0</h1>
+	<h1>Header-1</h1>
+	<h1>Header-2</h1>
+	<h2>Header-0</h2>
+	<h2>Header-1</h2>
+	<h2>Header-2</h2>
+
+	<div>
+		<h3>Header 1</h3>
+		<p>Paragraph</p>
+	</div>
+	<div>
+		<h3>Header 2</h3>
+		<p>Paragraph</p>
+	</div>
+	<div>
+		<h3>Header 3</h3>
+		<p>Paragraph</p>
+	</div>
+</body>
+</html>

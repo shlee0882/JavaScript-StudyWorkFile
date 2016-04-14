@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		function Square(length){
+			this.width = length;
+			this.height = length;
+		}
+		Square.prototype.getArea = function(){
+			return this.getWidth() * this.getHeight();
+		};
+		// 생성자 함수 선언
+		function Rectangle(w,h){
+			var width = w;
+			var height = h;
+			// 메서드 선언
+			this.getWidth = function() {return w;};
+			this.getHeight = function() {return h;};
+			this.setWidth = function(w){
+				if(w<0){ throw '길이는 음수일 수 없습니다.';} 
+				else{ width = w;}
+			};
+			this.setHeight = function(h){
+				if(w<0){throw '길이는 음수 일수 없습니다.';}
+				else{height = h;}
+			};
+		}
+
+	Rectangle.prototype.getArea = function(){
+		return this.getWidth * this.getHeight();
+	};
+	</script>
+	<script>
+		// 생성자 함수 선언
+		function Square(length){
+			this.base = Rectangle;
+			this.base(length, length);
+		}
+		Square.prototype = Rectangle.prototype;
+		Square.prototype.constructor = Square;
+
+		// 변수 선언
+		var rectangle = new Rectangle(5,7);
+		var square = new Square(5);
+		alert(rectangle.width);
+		alert(rectangle.getArea());
+		// alert(rectangle.getArea()+':'+square.getArea());
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

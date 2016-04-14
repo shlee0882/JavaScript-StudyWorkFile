@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0px; padding: 0px;}
+		#canvas{
+			background: gray;
+			width: 600px;
+			height: 400px;
+			position: relative;
+			overflow: hidden;
+		}
+		.inner-box{
+			background: orange;
+			width: 100px;
+			height: 100px;
+			position: absolute;
+		}
+	</style>
+	<script src="jquery-1.12.2.js"></script>
+
+	<!-- 이미지 슬라이더 사용 -->
+	<script>
+		$(document).ready(function(){
+			$('.inner-box').each(function(index){
+				$(this).css({
+					left: index*90,
+					top: index*90
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="canvas">
+		<div class="inner-box"></div>
+		<div class="inner-box"></div>
+		<div class="inner-box"></div>
+		<div class="inner-box"></div>
+		<div class="inner-box"></div>
+	</div>
+	<h1>Test Header</h1>
+	<div class="animation_canvas">
+		<div class="slider_panel">
+			
+		</div>
+		<div class="slider_text_panel">
+			
+		</div>
+		<div class="control_panel">
+			
+		</div>
+	</div>
+	<h1>Test Header</h1>
+	<div class="animation_canvas">
+		<div class="slider_panel">
+			<img class="slider_image" />
+			<img class="slider_image" />
+			<img class="slider_image" />
+			<img class="slider_image" />
+			<img class="slider_image" />
+		</div>
+		<div class="slider_text_panel">
+			<div class="slider_text">
+				<h1>Lorem ipsum</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			</div>
+			<div class="slider_text">
+				<h1>Nulla eget</h1>
+				<p>Nulla eget sapien mauris, ornare elementum elit</p>
+			</div>
+			<div class="slider_text">
+				<h1>Quisque eleifend</h1>
+				<p>Quisque eleifend augue nec lacus lobortis porta.</p>
+			</div>
+			<div class="slider_text">
+				<h1>Donec</h1>
+				<p>Donec a ligula lectus, eu iaculis justo.</p>
+			</div>
+			<div class="slider_text">
+				<h1>Vivamus scelerisque</h1>
+				<p>Vivamus scelerisque mauris id nunc dictum sit amet.</p>
+			</div>
+		</div>
+		<div class="control_panel">
+			<div class="control_button"></div>
+			<div class="control_button"></div>
+			<div class="control_button"></div>
+			<div class="control_button"></div>
+			<div class="control_button"></div>
+		</div>
+	</div>
+	<h1>Test Header</h1>
+</body>
+</html>

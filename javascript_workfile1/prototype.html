@@ -1,0 +1,37 @@
+<!-- 자바스크립트는 프로토 타입을 사용한다. 객체가 공통으로 가지는 공간으로 객체가 1000개가 만들어지면 함수도 1000번 생성되는 일이 발생되는데 이런 비효율적인 일을 방지하기 위해 생성자함수로 생성된 객체가 공통으로 가지는 공간인 프로토타입을 사용한다. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		function Student(name, korean, math, english, science){
+			this.이름 = name;
+			this.국어 = korean;
+			this.수학 = math;
+			this.영어 = english;
+			this.과학 = science;
+		};
+		Student.prototype.getSum = function(){ 
+			sum = this.국어 + this.수학 + this.영어 + this.과학;				
+			return sum };
+		Student.prototype.getAverage = function(){ return sum/4;};
+		// if(isNaN("this.prototype.getSum")){
+		// 	alert('error');
+		// }
+		Student.prototype.toString = function()
+		{ return this.이름 + '\n' + this.getSum() + '\n' + this.getAverage();};
+		var students = [];
+		students.push(new Student('이상현',80,80,80,80));
+		students.push(new Student('이조은',90,90,90,90));
+		var output = '이름'+'\t'+'총점'+'\t'+'평균'+'\n';
+		for(var i in students){
+			output += students[i].toString()+'\n';
+		}
+		alert(output);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

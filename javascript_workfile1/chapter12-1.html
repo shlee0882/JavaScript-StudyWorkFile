@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+	<script>
+		alert(typeof(externalFileVariable));
+		alert(typeof(externalFileFunction));
+	</script>
+	<!-- 외부 자바스크립트 파일 추가전에는 외부 자바스크립트 파일에 있는 변수나 함수를 사용할수 없다. -->
+	<script src="ExternalScript.js"></script>
+	<script>
+		alert(typeof (externalFileVariable)); // string
+		alert(typeof (externalFileFunction)); // function
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
+
+<!-- 
+
+	head 태그 형식 순서
+	<title></title>
+	<meta/>
+	<link rel="stylesheet" href="외부 스타일 시트">
+	<style>
+	</style>
+	<script src="외부 자바스크립트"></script>
+	<script>
+	</script>
+	
+ -->

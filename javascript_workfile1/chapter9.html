@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// window 객체의 속성
+		var output = '';
+		for(var key in window){
+			output += '☆' + key + ':'+window[key]+'\n';
+		}
+		alert(output);
+
+		// 첫번째 속성은 HTML URL, window 이름, window 출력옵션
+		window.open('http://www.naver.com','child','width=600, height=600, menubar=yes, location=yes, status=yes, toolbar=yes, resizable=yes',true);
+
+		// open() 메서드의 리턴값
+		var child = window.open('','','width=300, height=200');
+		child.document.write('<h1>From Parent Window</h1>');
+
+		// window 객체 이동메서드
+		var child = window.open('','','width=300, height=200');
+		child.moveTo(0,0);
+
+		setInterval(function(){
+			child.moveBy(10,10);
+		},1000);
+
+		// screen 객체
+		var output ='';
+		for(var key in screen){
+			output += '☆'+key+':'+screen[key]+'\n';
+		}
+		alert(output);
+
+		// 브라우저 크기 화면 일치하는 방법
+		var child = window.open('','','width=300, height=200');
+		var width = screen.width;
+		var height = screen.height;
+
+		child.moveTo(0,0);
+		child.resizeTo(width, height);
+
+		setInterval(function(){
+			child.resizeBy(-20,-20);
+			child.moveBy(10,10);
+		}, 1000);
+
+		// location 객체
+		var output = '';
+		for(var key in location){
+			output += '★'+key+':'+location[key]+'\n';
+		}
+		alert(output);
+
+		// location 객체는 페이지 이동할때 많이 사용
+		// location = 'http://www.google.com';
+		// location.href= 'http://www.google.com';
+
+		// location.assign('http://www.google.com');
+		// location.replace('http://www.google.com');
+
+		// location = location;
+		// location.href = location.href;
+		// location.assign(location);
+		// location.replace(location);
+		// location.reload();
+
+		// navigator 객체
+		var output ='';
+		for(var key in navigator){
+			output += '○'+key+':'+navigator[key]+'\n';
+		}
+		alert(output);
+
+		window.onload = function(){
+			alert('Process - 0');
+		};
+	</script>
+</head>
+<body>
+	<h1>Process - 1</h1>
+	<h1>Process - 2</h1>
+</body>
+</html>
