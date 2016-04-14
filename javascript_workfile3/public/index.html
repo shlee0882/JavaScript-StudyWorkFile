@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+
+		// var request = createRequest();
+
+		// 모든 브라우저에서 작동할수 있게 브라우저 종류에 따라 적절한 요청 객체 생성 함수 작성
+		function createRequest(){
+			var request;
+			try{
+				request = new XMLHttpRequest();
+			}catch(exceptioin){
+				try{
+					request = new ActiveXObject('Msxml2.XMLHTTP');
+				}catch(innerException){
+					request = new ActiveXObject('Microsoft.XMLHTTP');
+				}
+			}
+			return request;
+		}
+
+		// Asyncronous javascript and xml 비동기
+		// XMLHttpRequest 객체를 생성합니다.
+		var request = new XMLHttpRequest();
+		// open('전송방식','경로','비동기사용여부')
+		request.open('GET', '/data.html', false);
+
+		// Ajax를 수행합니다. 편지보냄
+		request.send();
+
+		// 출력합니다.
+		// document.body.innerHTML += request.responseText;
+
+		// 편지가 성공적으로 보내져 답장 왔는지 확인 출력 합니다.
+		// alert(request.responseText);
+		window.onload = function(){
+			document.body.innerHTML += request.responseText;
+		}
+
+		// 모든 브라우저에서 동작
+		function createRequest(){
+			try{
+				return new XMLHttpRequest();
+			}catch(exception){
+				var versions = [
+				'Msxml2.XMLHTTP.6.0',
+				'Msxml2.XMLHTTP.5.0',
+				'Msxml2.XMLHTTP.4.0',
+				'Msxml2.XMLHTTP.3.0',
+				'Msxml2.XMLHTTP',
+				'Microsoft.XMLHttp'
+				];
+			for(var i = 0; i<versions.length; i++){
+				try{
+					return new ActiveXObject(versions[i]);
+				}catch(e){ }
+			}
+		}
+	}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

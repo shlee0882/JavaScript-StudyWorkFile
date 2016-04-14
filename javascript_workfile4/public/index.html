@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// XMLHttpRequest 객체를 생성하는 함수
+		function createRequest(){
+			var request;
+			try{
+				request = new XMLHttpRequest();
+			}catch(exception){
+				try{
+					request = new ActiveXObject('Msxml2.XMLHTTP');
+				}catch(innerException){
+					request = new ActiveXObject('Microsoft.XMLHTTP');
+				}
+			}
+			return request;
+		}
+
+		// XMLHttpRequest 객체를 생성합니다.
+		var request = createRequest();
+		// 비동기 방식 이용한 ajax 요청
+		request.onreadystatechange = function (event){
+			//alert(request.readyState); // readyState속성 1,2,3,4
+			if(request.readyState == 4){
+				if(request.status == 200){ 
+				// 100 처리중 , 200 ok, 300 리다이렉트, 400 클라오류, 500 서버오류
+				// eval 함수를 사용하면 JavaScript 소스 코드를 동적으로 실행
+					// var json = eval(request.responseText);
+					// var output = '';
+					alert(request.responseXML);
+					// for(var i = 0; i < json.length; i++){
+					// 	for(var key in json[i]){
+					// 		output += i + ':' + json[i][key];
+					// 	};
+					// };
+					// document.body.innerHTML += request.responseText;
+					// document.body.innerHTML += output;
+				};
+			};
+		};
+		request.open('GET', '/data.xml', true);
+		request.send();
+
+		/*
+		// open 메서드의 세번째 매개변수를 true로 바꾸고 실행하면 비동기 방식으로 실행됨.
+		request.open('GET','/data.html',true);
+
+		// send() 메서드에 소비되는 시간 측정
+		var prevDate = new Date();
+		// Ajax를 수행합니다.
+		request.send();
+		var nowDate = new Date();
+
+		alert(nowDate - prevDate);
+		*/
+
+		// 출력합니다.
+		// window.onload = function(){
+		// 	document.body.innerHTML += request.responseText;
+		// }
+		// document.body.innerHTML += request.responseText;
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
